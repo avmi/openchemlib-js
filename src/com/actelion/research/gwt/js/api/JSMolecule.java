@@ -206,7 +206,7 @@ public class JSMolecule {
   public void inventCoordinates(int mode, int seed) {
     CoordinateInventor inventor = new CoordinateInventor(mode);
     if (seed >= 0) {
-      inventor.setRandomSeed((long)seed);
+      inventor.setRandomSeed((long) seed);
     }
     inventor.invent(oclMolecule);
     oclMolecule.setStereoBondsFromParity();
@@ -369,7 +369,7 @@ public class JSMolecule {
   public static final int cAtomQFStereoStateShift = 44;
   public static final long cAtomQFSimpleFeatures = 0x00007F800E3FC7FEL;
   public static final long cAtomQFNarrowing = 0x00007FFF0FFFFFFEL;
-  public static final long cAtomQFDepictedFeatures= 0x0007FFFF1FFFDFFFL;
+  public static final long cAtomQFDepictedFeatures = 0x0007FFFF1FFFDFFFL;
   public static final long cAtomQFAny = 0x00000001;
   public static final long cAtomQFAromState = 0x0000400000000006L;
   public static final long cAtomQFAromatic = 0x00000002;
@@ -1287,9 +1287,7 @@ public class JSMolecule {
   // Mutating it does not change the molecule; use setCoordinates (or
   // setAtomX/Y/Z) to write the values back.
   public JavaScriptObject getCoordinates(int atom) {
-    return makeCoordinates(
-        oclMolecule.getAtomX(atom),
-        oclMolecule.getAtomY(atom),
+    return makeCoordinates(oclMolecule.getAtomX(atom), oclMolecule.getAtomY(atom),
         oclMolecule.getAtomZ(atom));
   }
 
@@ -1302,9 +1300,7 @@ public class JSMolecule {
   // 3D translation of every atom by a { x, y, z } vector (the 2D translateCoords
   // above ignores z).
   public void translate(JavaScriptObject coordinates) {
-    oclMolecule.translate(
-        getCoordinateX(coordinates),
-        getCoordinateY(coordinates),
+    oclMolecule.translate(getCoordinateX(coordinates), getCoordinateY(coordinates),
         getCoordinateZ(coordinates));
   }
 
@@ -1320,9 +1316,7 @@ public class JSMolecule {
 
   public JavaScriptObject getCenterOfGravity() {
     Coordinates c = oclMolecule.getCenterOfGravity();
-    return c == null
-        ? makeCoordinates(0, 0, 0)
-        : makeCoordinates(c.x, c.y, c.z);
+    return c == null ? makeCoordinates(0, 0, 0) : makeCoordinates(c.x, c.y, c.z);
   }
 
   private native JavaScriptObject makeCoordinates(double x, double y, double z)
